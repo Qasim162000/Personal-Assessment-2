@@ -41,13 +41,21 @@ const App = () => {
             ))}
           </tbody>
         </table> */}
-        <HotTable
-          data={csvData}
-          rowHeaders={true}
-          colHeaders={true}
-          height="auto"
-          licenseKey="non-commercial-and-evaluation" // for non-commercial use only
-        />
+        {csvData.length === 0 ? (
+          <h1 className="mt-4 font-bold">
+            Submit a CSV File above to be Mapped across the table
+          </h1>
+        ) : (
+          <div className="mt-4 mx-auto">
+            <HotTable
+              data={csvData}
+              rowHeaders={false}
+              colHeaders={true}
+              height="auto"
+              licenseKey="non-commercial-and-evaluation" // for non-commercial use only
+            />
+          </div>
+        )}
       </div>
     </>
   );
