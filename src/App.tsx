@@ -1,13 +1,14 @@
 import { useState } from "react";
 import CSVReader from "react-csv-reader";
+import { HyperFormula } from "hyperformula";
 import "handsontable/dist/handsontable.full.min.css";
-// import Handsontable from "handsontable/base";
 import { registerAllModules } from "handsontable/registry";
 import { HotTable } from "@handsontable/react";
+import { Navbar } from "./components/Navbar";
 
 const App = () => {
   registerAllModules();
-  const [csvData, setCsvData] = useState([]);
+  const [csvData, setCsvData] = useState<any>([]);
 
   const handleFileUpload = (data: any, fileInfo: any) => {
     setCsvData(data);
@@ -15,32 +16,9 @@ const App = () => {
 
   return (
     <>
+      <Navbar />
       <div className="container mx-auto py-10">
         <CSVReader onFileLoaded={handleFileUpload} />
-        {/* <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border p-2">Column 1</th>
-              <th className="border p-2">Column 2</th>
-              <th className="border p-2">Column 3</th>
-              <th className="border p-2">Column 3</th>
-              <th className="border p-2">Column 3</th>
-              <th className="border p-2">Column 3</th>
-            </tr>
-          </thead>
-          <tbody>
-            {csvData.map((row, i) => (
-              <tr key={i}>
-                <td className="border p-2">{row[0]}</td>
-                <td className="border p-2">{row[1]}</td>
-                <td className="border p-2">{row[2]}</td>
-                <td className="border p-2">{row[3]}</td>
-                <td className="border p-2">{row[4]}</td>
-                <td className="border p-2">{row[5]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
         {csvData.length === 0 ? (
           <h1 className="mt-4 font-bold">
             Submit a CSV File above to be Mapped across the table
@@ -48,11 +26,36 @@ const App = () => {
         ) : (
           <div className="mt-4 mx-auto">
             <HotTable
-              data={csvData}
-              rowHeaders={false}
+              data={[
+                ...csvData,
+                [
+                  "",
+                  "=SUM(B3:B8)",
+                  "=SUM(C3:C8)",
+                  "=SUM(D3:D8)",
+                  "=SUM(E3:E8)",
+                  "=SUM(F3:F8)",
+                  "=SUM(G3:G8)",
+                  "=SUM(H3:H8)",
+                  "=SUM(I3:I8)",
+                  "=SUM(J3:J8)",
+                  "=SUM(K3:K8)",
+                  "",
+                ],
+              ]}
+              formulas={{
+                engine: HyperFormula,
+              }}
+              contextMenu={true}
+              rowHeaders={true}
               colHeaders={true}
               height="auto"
-              licenseKey="non-commercial-and-evaluation" // for non-commercial use only
+              fixedRowsBottom={1}
+              customBorders={true}
+              dropdownMenu={true}
+              multiColumnSorting={true}
+              manualRowMove={true}
+              licenseKey="non-commercial-and-evaluation"
             />
           </div>
         )}
