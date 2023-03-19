@@ -17,6 +17,9 @@ const App = () => {
             <th className="border p-2">Column 1</th>
             <th className="border p-2">Column 2</th>
             <th className="border p-2">Column 3</th>
+            <th className="border p-2">Column 3</th>
+            <th className="border p-2">Column 3</th>
+            <th className="border p-2">Column 3</th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +28,9 @@ const App = () => {
               <td className="border p-2">{row[0]}</td>
               <td className="border p-2">{row[1]}</td>
               <td className="border p-2">{row[2]}</td>
+              <td className="border p-2">{row[3]}</td>
+              <td className="border p-2">{row[4]}</td>
+              <td className="border p-2">{row[5]}</td>
             </tr>
           ))}
         </tbody>
