@@ -82,8 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
             className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium text-center"
             aria-current="page"
           >
-            CRUD Operation on Table using Tailwind with TypeScript (Frontend
-            only)
+            Cucumber Report
           </a>
         </div>
       </div>

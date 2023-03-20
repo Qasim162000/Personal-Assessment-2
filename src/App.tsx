@@ -3,8 +3,9 @@ import CSVReader from "react-csv-reader";
 import { HyperFormula } from "hyperformula";
 import "handsontable/dist/handsontable.full.min.css";
 import { registerAllModules } from "handsontable/registry";
-import { HotTable } from "@handsontable/react";
+import { HotTable, HotColumn } from "@handsontable/react";
 import { Navbar } from "./components/Navbar";
+import "./styles.css";
 
 const App = () => {
   registerAllModules();
@@ -13,11 +14,36 @@ const App = () => {
   const handleFileUpload = (data: any, fileInfo: any) => {
     setCsvData(data);
   };
+  const sumSecondLastRow = [
+    "",
+    "=SUM(B3:B8)",
+    "=SUM(C3:C8)",
+    "=SUM(D3:D8)",
+    "=SUM(E3:E8)",
+    "=SUM(F3:F8)",
+    "=SUM(G3:G8)",
+    "=SUM(H3:H8)",
+    "=SUM(I3:I8)",
+    "=SUM(J3:J8)",
+    "=SUM(K3:K8)",
+    "6",
+  ];
+  // =B9/G9
+  const PercentageLastRow = [
+    "",
+    "=ROUND(B10/G10*100)",
+    "=ROUND(C10/G10*100)",
+    "=ROUND(D10/G10*100)",
+    "=ROUND(E10/G10*100)",
+    "=ROUND(F10/G10*100)",
+  ];
+
+  const newData = [...csvData, sumSecondLastRow, PercentageLastRow];
 
   return (
     <>
       <Navbar />
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto py-10 text-center">
         <CSVReader onFileLoaded={handleFileUpload} />
         {csvData.length === 0 ? (
           <h1 className="mt-4 font-bold">
@@ -26,26 +52,14 @@ const App = () => {
         ) : (
           <div className="mt-4 mx-auto">
             <HotTable
-              data={[
-                ...csvData,
-                [
-                  "",
-                  "=SUM(B3:B8)",
-                  "=SUM(C3:C8)",
-                  "=SUM(D3:D8)",
-                  "=SUM(E3:E8)",
-                  "=SUM(F3:F8)",
-                  "=SUM(G3:G8)",
-                  "=SUM(H3:H8)",
-                  "=SUM(I3:I8)",
-                  "=SUM(J3:J8)",
-                  "=SUM(K3:K8)",
-                  "",
-                ],
-              ]}
+              data={newData}
               formulas={{
                 engine: HyperFormula,
               }}
+              cell={[
+                { row: 9, col: 7, className: "custom-cell" },
+                { row: 9, col: 8, className: "custom-cell-red" },
+              ]}
               contextMenu={true}
               rowHeaders={true}
               colHeaders={true}
@@ -56,7 +70,20 @@ const App = () => {
               multiColumnSorting={true}
               manualRowMove={true}
               licenseKey="non-commercial-and-evaluation"
-            />
+            >
+              <HotColumn data={0} />
+              <HotColumn data={1} />
+              <HotColumn data={2} />
+              <HotColumn data={3} />
+              <HotColumn data={4} />
+              <HotColumn data={5} />
+              <HotColumn data={6} />
+              <HotColumn data={7} />
+              <HotColumn data={8} />
+              <HotColumn data={9} />
+              <HotColumn data={10} />
+              <HotColumn data={11} />
+            </HotTable>
           </div>
         )}
       </div>
