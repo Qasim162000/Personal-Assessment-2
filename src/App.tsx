@@ -6,6 +6,7 @@ import { registerAllModules } from "handsontable/registry";
 import { HotTable, HotColumn } from "@handsontable/react";
 import { Navbar } from "./components/Navbar";
 import "./styles.css";
+import MyPieChart from "./MyPieChart";
 
 const App = () => {
   registerAllModules();
@@ -44,6 +45,7 @@ const App = () => {
     <>
       <Navbar />
       <div className="container mx-auto py-10 text-center">
+        <MyPieChart value1={50} value2={50} />
         <CSVReader onFileLoaded={handleFileUpload} />
         {csvData.length === 0 ? (
           <h1 className="mt-4 font-bold">
@@ -57,8 +59,10 @@ const App = () => {
                 engine: HyperFormula,
               }}
               cell={[
-                { row: 9, col: 7, className: "custom-cell" },
-                { row: 9, col: 8, className: "custom-cell-red" },
+                { row: 9, col: 7, className: "custom-cell-one" },
+                { row: 9, col: 8, className: "custom-cell-two" },
+                // { row: 9, col: 9, className: "custom-cell-three" },
+                // { row: 9, col: 8, className: "custom-cell-four" },
               ]}
               contextMenu={true}
               rowHeaders={true}

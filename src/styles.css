@@ -5,11 +5,19 @@
     background-color: red;
   } */
 
-td.custom-cell {
+td.custom-cell-one {
   color: #fff;
   background-color: #37bc6c;
 }
-td.custom-cell-red {
+td.custom-cell-two {
+  color: #fff;
+  background-color: rgb(255, 0, 0);
+}
+td.custom-cell-three {
+  color: #fff;
+  background-color: rgb(255, 0, 0);
+}
+td.custom-cell-four {
   color: #fff;
   background-color: rgb(255, 0, 0);
 }
