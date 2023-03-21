@@ -29,17 +29,23 @@ const App = () => {
     "=SUM(K3:K8)",
     "6",
   ];
-  // =B9/G9
+
   const PercentageLastRow = [
     "",
-    "=ROUND(B10/G10*100)",
-    "=ROUND(C10/G10*100)",
-    "=ROUND(D10/G10*100)",
-    "=ROUND(E10/G10*100)",
-    "=ROUND(F10/G10*100)",
+    "=ROUND(B9/G9*100)",
+    "=ROUND(C9/G9*100)",
+    "=ROUND(D9/G9*100)",
+    "=ROUND(E9/G9*100)",
+    "=ROUND(F9/G9*100)",
+    "",
+    "=ROUND(H9/J9*100)",
+    "=ROUND(I9/J9*100)",
+    "",
+    "",
+    "=ROUND(4/6*100)",
   ];
 
-  const newData = [...csvData, sumSecondLastRow, PercentageLastRow];
+  const newData = [...csvData.slice(0, 8), sumSecondLastRow, PercentageLastRow];
 
   return (
     <>
