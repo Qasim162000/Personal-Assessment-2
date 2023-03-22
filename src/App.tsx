@@ -30,7 +30,7 @@ const App = () => {
     "6",
   ];
 
-  const PercentageLastRow = [
+  let PercentageLastRow: any = [
     "",
     "=ROUND(B9/G9*100)",
     "=ROUND(C9/G9*100)",
@@ -51,7 +51,10 @@ const App = () => {
     <>
       <Navbar />
       <div className="container mx-auto py-10 text-center">
-        <MyPieChart value1={50} value2={50} />
+        <MyPieChart
+          value1={parseInt(PercentageLastRow[7], 10)}
+          value2={parseInt(PercentageLastRow[8], 10)}
+        />
         <CSVReader onFileLoaded={handleFileUpload} />
         {csvData.length === 0 ? (
           <h1 className="mt-4 font-bold">
@@ -67,8 +70,6 @@ const App = () => {
               cell={[
                 { row: 9, col: 7, className: "custom-cell-one" },
                 { row: 9, col: 8, className: "custom-cell-two" },
-                // { row: 9, col: 9, className: "custom-cell-three" },
-                // { row: 9, col: 8, className: "custom-cell-four" },
               ]}
               contextMenu={true}
               rowHeaders={true}
@@ -80,20 +81,7 @@ const App = () => {
               multiColumnSorting={true}
               manualRowMove={true}
               licenseKey="non-commercial-and-evaluation"
-            >
-              <HotColumn data={0} />
-              <HotColumn data={1} />
-              <HotColumn data={2} />
-              <HotColumn data={3} />
-              <HotColumn data={4} />
-              <HotColumn data={5} />
-              <HotColumn data={6} />
-              <HotColumn data={7} />
-              <HotColumn data={8} />
-              <HotColumn data={9} />
-              <HotColumn data={10} />
-              <HotColumn data={11} />
-            </HotTable>
+            ></HotTable>
           </div>
         )}
       </div>

@@ -50,11 +50,11 @@ function MyPieChart({ value1, value2 }: MyPieChartProps) {
     <canvas
       ref={canvasRef}
       style={{
-        maxWidth: "250px",
-        maxHeight: "250px",
+        maxWidth: "280px",
+        maxHeight: "280px",
         width: "100%",
         height: "100%",
-        margin: "0px auto 40px auto",
+        margin: "0px auto 50px auto",
       }}
     />
   );
