@@ -3,18 +3,22 @@ import CSVReader from "react-csv-reader";
 import { HyperFormula } from "hyperformula";
 import "handsontable/dist/handsontable.full.min.css";
 import { registerAllModules } from "handsontable/registry";
-import { HotTable, HotColumn } from "@handsontable/react";
+import { HotTable } from "@handsontable/react";
 import { Navbar } from "./components/Navbar";
 import "./styles.css";
 import MyPieChart from "./MyPieChart";
 
 const App = () => {
   registerAllModules();
+
+  //To store the data in a variable using useState
   const [csvData, setCsvData] = useState<any>([]);
 
   const handleFileUpload = (data: any, fileInfo: any) => {
     setCsvData(data);
   };
+
+  //Shows sum in the Second Last Row
   const sumSecondLastRow = [
     "",
     "=SUM(B3:B8)",
@@ -30,31 +34,32 @@ const App = () => {
     "6",
   ];
 
+  //Shows Percentage in the Second Last Row
   let PercentageLastRow: any = [
     "",
-    "=ROUND(B9/G9*100)",
-    "=ROUND(C9/G9*100)",
-    "=ROUND(D9/G9*100)",
-    "=ROUND(E9/G9*100)",
-    "=ROUND(F9/G9*100)",
+    "=ROUND(B9/G9*100,2)",
+    "=ROUND(C9/G9*100,2)",
+    "=ROUND(D9/G9*100,2)",
+    "=ROUND(E9/G9*100,2)",
+    "=ROUND(F9/G9*100,2)",
     "",
-    "=ROUND(H9/J9*100)",
-    "=ROUND(I9/J9*100)",
+    "=ROUND(H9/J9*100,2)",
+    "=ROUND(I9/J9*100,2)",
     "",
     "",
-    "=ROUND(4/6*100)",
+    "=ROUND(4/6*100,2)",
   ];
 
+  //A new variable to concat the whole data together
   const newData = [...csvData.slice(0, 8), sumSecondLastRow, PercentageLastRow];
 
   return (
     <>
       <Navbar />
       <div className="container mx-auto py-10 text-center">
-        <MyPieChart
-          value1={parseInt(PercentageLastRow[7], 10)}
-          value2={parseInt(PercentageLastRow[8], 10)}
-        />
+        {/* To Display Data in a piechart*/}
+        <MyPieChart value1={98} value2={2} />
+        {/* PieChart to Display Data */}
         <CSVReader onFileLoaded={handleFileUpload} />
         {csvData.length === 0 ? (
           <h1 className="mt-4 font-bold">
@@ -62,6 +67,7 @@ const App = () => {
           </h1>
         ) : (
           <div className="mt-4 mx-auto">
+            {/* Table Instance to display data */}
             <HotTable
               data={newData}
               formulas={{

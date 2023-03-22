@@ -1,27 +1,9 @@
-/* .handsontable td {
-  background-color: red;
-} */
-/* .bg-red {
-    background-color: red;
-  } */
-
 td.custom-cell-one {
   color: #fff;
   background-color: #37bc6c;
 }
+
 td.custom-cell-two {
   color: #fff;
   background-color: rgb(255, 0, 0);
 }
-td.custom-cell-three {
-  color: #fff;
-  background-color: rgb(255, 0, 0);
-}
-td.custom-cell-four {
-  color: #fff;
-  background-color: rgb(255, 0, 0);
-}
-/* .custom-table thead th:nth-child(even),
-.custom-table tbody tr:nth-child(odd) th {
-  background-color: #d7f1e1;
-} */
